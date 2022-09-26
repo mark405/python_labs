@@ -2,9 +2,9 @@ import argparse
 
 parser = argparse.ArgumentParser()
 
-parser.add_argument("-W", dest="capacity", type=int)
-parser.add_argument("-w", dest="bars", type=int, nargs="*")
-parser.add_argument("-n", dest="number", type=int)
+parser.add_argument("-W", dest="capacity")
+parser.add_argument("-w", dest="bars", nargs="*")
+parser.add_argument("-n", dest="number")
 
 args = parser.parse_args()
 
@@ -22,6 +22,24 @@ def calculate_max_weight_of_gold(capacity, list_of_bars, number_of_bars):
     return rucksack
 
 
-k_list = calculate_max_weight_of_gold(args.capacity, args.bars, args.number)
+try:
+    args.capacity = int(args.capacity)
 
-print(k_list[args.number][args.capacity])
+    for i in range(len(args.bars)):
+        args.bars[i] = int(args.bars[i])
+
+    args.number = int(args.number)
+
+    if len(args.bars) != args.number:
+        raise IndexError
+
+    k_list = calculate_max_weight_of_gold(args.capacity, args.bars, args.number)
+    print(k_list[args.number][args.capacity])
+except ValueError:
+    print("ValueError")
+except TypeError:
+    print("TypeError")
+except IndexError:
+    print("IndexError")
+
+
