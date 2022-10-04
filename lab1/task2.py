@@ -12,16 +12,19 @@ args = parser.parse_args()
 
 operation = args.operation
 
-response = getattr(math, operation, "not")
+
+def func(action):
+    return getattr(math, action, None) or getattr(operator, action, None) or None
+
+
+result = func(operation)
+
 try:
-    if response == "not":
-        response_two = getattr(operator, operation)
-        print(response_two(float(args.x), float(args.y)))
+    if not result:
+        print("Function doesnt exists")
     else:
-        print(response(float(args.x) + float(args.y)))
+        print(result(float(args.x), float(args.y)))
+except TypeError:
+    print(result(float(args.x) + float(args.y)))
 except ValueError:
     print("ValueError")
-except AttributeError:
-    print("AttributeError")
-except TypeError:
-    print("TypeError")
