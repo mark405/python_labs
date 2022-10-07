@@ -4,22 +4,16 @@ class Rectangle(object):
         self.__width = 1.
 
     def set_length(self, length):
-        if isinstance(length, float) and 0.0 < length < 20.0:
+        if isinstance(length, float | int) and 0 < length < 20:
             self.__length = length
         else:
-            print("Invalid length")
+            raise ValueError
 
     def set_width(self, width):
-        if isinstance(width, float) and 0.0 < width < 20.0:
-            self.__length = width
+        if isinstance(width, float | int) and 0 < width < 20:
+            self.__width = width
         else:
-            print("Invalid length")
-
-    def get_length(self):
-        return self.__length
-
-    def get_width(self):
-        return self.__width
+            raise ValueError
 
     def get_perimetr(self):
         return 2 * (self.__length + self.__width)
@@ -30,8 +24,11 @@ class Rectangle(object):
 
 rectangle = Rectangle()
 
-rectangle.set_length(2.3)
-rectangle.set_width(2.5)
+try:
+    rectangle.set_length(10)
+    rectangle.set_width(2.5)
+    print(rectangle.get_square())
+    print(rectangle.get_perimetr())
+except ValueError:
+    print("ValueError")
 
-print(rectangle.get_square())
-print(rectangle.get_perimetr())

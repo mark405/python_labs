@@ -1,8 +1,11 @@
 class Product(object):
-    def __init__(self, price, description, size):
-        self.__price = price
-        self.__description = description
-        self.__size = size
+    def __init__(self, price, description, dimension):
+        if price > 0:
+            self.__price = price
+            self.__description = description
+            self.__dimension = dimension
+        else:
+            raise ValueError
 
     def get_price(self):
         return self.__price
@@ -10,8 +13,8 @@ class Product(object):
     def get_description(self):
         return self.__description
 
-    def get_size(self):
-        return self.__size
+    def get_dimension(self):
+        return self.__dimension
 
 
 class Customer(object):
@@ -35,31 +38,44 @@ class Customer(object):
 
 
 class Order(object):
-    def __init__(self, product_list, customer):
-        self.__product_list = product_list
+    def __init__(self, customer):
+        self.__products = []
         self.__customer = customer
 
-    def get_product_list(self):
-        return self.__product_list
+    def add_product(self, product):
+        self.__products.append(product)
+
+    def get_list_of_products(self):
+        return self.__products
 
     def get_customer(self):
         return self.__customer
 
-    def get_whole_price(self):
-        result = 0
-        for i in self.__product_list:
-            result += i.get_price() * i.get_size()
+    def get_total_order_value(self):
+        total = 0
+        for product in self.__products:
+            total += product.get_price() * product.get_dimension()
 
-        return result
+        return total
 
 
-product1 = Product(200, "Phone", 5)
-product2 = Product(3000, "TV", 3)
+try:
+    product1 = Product(200, "Phone", 5)
+    product2 = Product(3000, "TV", 3)
 
-person = Customer("Zavgod", "Mark", "Sergeevich", "0992032033")
+    person = Customer("Zavgod", "Mark", "Sergeevich", "0992032033")
 
-list_of_products = [product1, product2]
+    order = Order(person)
 
-order = Order(list_of_products, person)
+    order.add_product(product1)
+    order.add_product(product2)
 
-print(order.get_whole_price())
+    list_of_products = order.get_list_of_products()
+
+    print("Name:", order.get_customer().get_name())
+    for i in list_of_products:
+        print(f"Item: {i.get_description()} | Price: {i.get_price()}$ | Dimension: {i.get_dimension()}")
+
+    print(f"Total price: {order.get_total_order_value()}$")
+except ValueError:
+    print("ValueError")

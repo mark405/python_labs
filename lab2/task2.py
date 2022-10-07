@@ -1,30 +1,26 @@
+import math
+
+
 class Rational(object):
     def __init__(self, nominator=1, denominator=1):
+        if isinstance(nominator, int) and isinstance(denominator, int) and denominator != 0:
+            div = math.gcd(nominator, denominator)
+            self.__nominator = nominator // div
+            self.__denominator = denominator // div
+        else:
+            raise ValueError
 
-        self.__nominator = int(nominator)
-        self.__denominator = int(denominator)
+    def get_str_result(self):
+        return f"{self.__nominator} / {self.__denominator}"
 
-        try:
-            while nominator % denominator != 0:
-                old_nominator = nominator
-                old_denominator = denominator
-
-                nominator = old_denominator
-                denominator = old_nominator % old_denominator
-
-            self.__nominator //= denominator
-            self.__denominator //= denominator
-        except Exception as e:
-            print("Invalid argument - ", e)
-
-    def print_fraction(self):
-        print(self.__nominator, "/", self.__denominator)
-
-    def print_fraction_in_float_form(self):
-        print(self.__nominator / self.__denominator)
+    def get_result(self):
+        return self.__nominator / self.__denominator
 
 
-rat = Rational(2, 10)
+try:
+    rat = Rational(0, 2)
+    print(rat.get_str_result())
+    print(rat.get_result())
+except ValueError:
+    print("ValueError")
 
-rat.print_fraction()
-rat.print_fraction_in_float_form()
