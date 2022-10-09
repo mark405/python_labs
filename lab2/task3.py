@@ -1,4 +1,4 @@
-class Product(object):
+class Product:
     def __init__(self, price, description, dimension):
         if price > 0:
             self.__price = price
@@ -17,7 +17,7 @@ class Product(object):
         return self.__dimension
 
 
-class Customer(object):
+class Customer:
     def __init__(self, surname, name, patronymic, mobile_phone):
         self.__surname = surname
         self.__name = name
@@ -37,7 +37,7 @@ class Customer(object):
         return self.__mobile_phone
 
 
-class Order(object):
+class Order:
     def __init__(self, customer):
         self.__products = []
         self.__customer = customer

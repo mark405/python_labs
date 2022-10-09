@@ -2,7 +2,7 @@ import re
 import os.path
 
 
-class TextAnalyser(object):
+class TextAnalyser:
     def __init__(self, file_name):
         if os.path.exists(file_name):
             self.__file_name = file_name

@@ -1,7 +1,7 @@
 import math
 
 
-class Rational(object):
+class Rational:
     def __init__(self, nominator=1, denominator=1):
         if isinstance(nominator, int) and isinstance(denominator, int) and denominator != 0:
             div = math.gcd(nominator, denominator)

@@ -1,4 +1,4 @@
-class Group(object):
+class Group:
     def __init__(self, student_list):
         if 0 < len(student_list) <= 20:
             if self.check_if_duplicate(student_list):
@@ -50,7 +50,7 @@ class Group(object):
         return top_five_students
 
 
-class Student(object):
+class Student:
     def __init__(self, name, surname, number, math_mark, it_mark, lang_mark):
         self.__name = name
         self.__surname = surname
