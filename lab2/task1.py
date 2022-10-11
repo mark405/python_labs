@@ -6,13 +6,13 @@ class Rectangle:
         self.set_width(width)
 
     def set_length(self, length):
-        if isinstance(length, (float, int)) and 0 < length < 20:
+        if isinstance(length, float | int) and 0 < length < 20:
             self.__length = length
         else:
             raise ValueError
 
     def set_width(self, width):
-        if isinstance(width, (float, int)) and 0 < width < 20:
+        if isinstance(width, float | int) and 0 < width < 20:
             self.__width = width
         else:
             raise ValueError
