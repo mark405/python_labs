@@ -1,0 +1,29 @@
+[{
+     "id": 0,
+     "name": "RegularTicket",
+     "event": "Gig",
+     "price": 400,
+     "date": "21/11/2022"
+},
+{
+     "id": 1,
+     "name": "StudentTicket",
+     "event": "Big Gig",
+     "price": 500.0,
+     "date": "25/12/2022"
+},
+{
+     "id": 2,
+     "name": "RegularTicket",
+     "event": "Big Gig",
+     "price": 1000,
+     "date": "25/12/2022"
+},
+{
+     "id": 3,
+     "name": "RegularTicket",
+     "event": "Big Gig",
+     "price": 1000,
+     "date": "25/12/2022"
+},
+]
